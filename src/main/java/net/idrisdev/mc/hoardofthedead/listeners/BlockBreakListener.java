@@ -6,7 +6,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockBreakListener implements Listener {
     @EventHandler
-    private void onBlockBreak(BlockBreakEvent e){
+    private void onBlockBreak(BlockBreakEvent e) {
         e.setCancelled(true);
     }
 }
