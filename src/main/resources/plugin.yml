@@ -1,3 +1,7 @@
 name: HoardOfTheDead
 version: '${project.version}'
 main: net.idrisdev.mc.hoardofthedead.HoardOfTheDead
+api-version: 1.12.2
+commands:
+  start:
+    description: Starts a Hoard
