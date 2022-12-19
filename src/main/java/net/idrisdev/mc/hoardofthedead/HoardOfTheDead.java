@@ -3,10 +3,18 @@ package net.idrisdev.mc.hoardofthedead;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class HoardOfTheDead extends JavaPlugin {
+    public final int MAX_WAVES = 10;
+    private GameManager gameManager;
+
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         System.out.println("Hoard of the Dead Initialized.");
+        this.gameManager = new GameManager(this);
     }
 
     @Override
