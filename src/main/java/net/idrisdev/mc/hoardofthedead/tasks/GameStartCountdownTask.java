@@ -6,22 +6,22 @@ import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameStartCountdownTask extends BukkitRunnable {
-    private int timeLeft = 10;
     private final GameManager gameManager;
+    private int timeLeft = 10;
 
     public GameStartCountdownTask(GameManager gameManager) {
         this.gameManager = gameManager;
     }
 
     @Override
-    public void run(){
-        if(gameManager.getGameState() != GameState.STARTING){
+    public void run() {
+        if (gameManager.getGameState() != GameState.STARTING) {
             cancel();
             System.out.println("You cannot start a countdown without the state being starting.");
             return;
         }
-        timeLeft --;
-        if(timeLeft <= 0){
+        timeLeft--;
+        if (timeLeft <= 0) {
             cancel();
             gameManager.setGameState(GameState.ACTIVE);
             return;
