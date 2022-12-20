@@ -101,7 +101,7 @@ public class GameManager {
     public void playerKilled(Player p) {
         if(this.getGameState() != GameState.ACTIVE) return;
 
-        Bukkit.broadcastMessage("A " + ChatColor.GOLD + "Champion has died!");
+        Bukkit.broadcastMessage("A " + ChatColor.GOLD + "Champion" + ChatColor.RESET + " has died!");
         alivePlayers.remove(p.getUniqueId());
         if (alivePlayers.isEmpty()) {
             this.setGameState(GameState.LOSS);
