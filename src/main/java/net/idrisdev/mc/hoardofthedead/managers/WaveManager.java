@@ -46,6 +46,7 @@ public class WaveManager {
         gameManager.getAlivePlayers().forEach((uuid, ply) -> {
             AttributeInstance attrMaxHealth = ply.getAttribute(Attribute.GENERIC_MAX_HEALTH);
             ply.setHealth(attrMaxHealth.getValue());
+            ply.sendTitle(ChatColor.GREEN + "New Wave", ChatColor.BLUE + "Wave "+ waveNumber,0, 12, 0);
         });
 
         int numOfMobs = getMobCount(waveNumber);

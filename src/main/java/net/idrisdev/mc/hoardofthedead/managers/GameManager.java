@@ -78,12 +78,14 @@ public class GameManager {
                 gameStartCountdownTask.runTaskTimer(plugin, 8, 20);
                 break;
             case NEXT_WAVE:
-                Bukkit.broadcastMessage("§3Wave Complete, starting next wave");
+                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Wave Complete", ChatColor.BLUE + "Congratulations!",0, 12, 0));
+
                 NextWaveCountdownTask nextWaveCountdownTask = new NextWaveCountdownTask(this);
                 nextWaveCountdownTask.runTaskTimer(plugin, 8, 20);
                 break;
             case WON:
-                Bukkit.broadcastMessage("Congratulations! You have won against the hoard. Type /start to go again");
+                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Congratulations!", ChatColor.BLUE + "You have won against the hoard. Type /start to go again!",0, 12, 0));
+
                 break;
             case LOSS:
                 Bukkit.broadcastMessage("Oof! You have lost against the hoard. Type /start to go again");
