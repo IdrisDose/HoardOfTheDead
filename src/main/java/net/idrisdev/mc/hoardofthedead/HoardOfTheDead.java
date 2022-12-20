@@ -4,6 +4,7 @@ import net.idrisdev.mc.hoardofthedead.commands.StartCommand;
 import net.idrisdev.mc.hoardofthedead.listeners.BlockBreakListener;
 import net.idrisdev.mc.hoardofthedead.listeners.EntityDeathListener;
 import net.idrisdev.mc.hoardofthedead.managers.GameManager;
+import net.idrisdev.mc.hoardofthedead.tasks.KeepNightTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class HoardOfTheDead extends JavaPlugin {
@@ -22,6 +23,9 @@ public final class HoardOfTheDead extends JavaPlugin {
         getCommand("start").setExecutor(new StartCommand(this));
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDeathListener(this), this);
+
+        // keep it nighttime
+        new KeepNightTask().runTaskTimer(this, 0, 100L);
     }
 
     @Override
