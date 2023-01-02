@@ -78,13 +78,13 @@ public class GameManager {
                 gameStartCountdownTask.runTaskTimer(plugin, 8, 20);
                 break;
             case NEXT_WAVE:
-                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Wave Complete", ChatColor.BLUE + "Congratulations!",0, 12, 0));
+                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Wave Complete", ChatColor.BLUE + "Congratulations!",0, 20, 0));
 
                 NextWaveCountdownTask nextWaveCountdownTask = new NextWaveCountdownTask(this);
                 nextWaveCountdownTask.runTaskTimer(plugin, 8, 20);
                 break;
             case WON:
-                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Congratulations!", ChatColor.BLUE + "You have won against the hoard. Type /start to go again!",0, 12, 0));
+                this.alivePlayers.forEach((uuid, ply) -> ply.sendTitle(ChatColor.GREEN + "Congratulations!", ChatColor.BLUE + "You have won against the hoard. Type /start to go again!",0, 20, 0));
 
                 break;
             case LOSS:
