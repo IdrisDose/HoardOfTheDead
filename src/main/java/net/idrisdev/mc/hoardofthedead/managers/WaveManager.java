@@ -1,5 +1,6 @@
 package net.idrisdev.mc.hoardofthedead.managers;
 
+import net.idrisdev.mc.hoardofthedead.mobs.CustomMob;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -7,7 +8,7 @@ import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 
 import java.util.HashMap;
@@ -55,20 +56,10 @@ public class WaveManager {
 
             // Spawn zombie in random location
             Location randomSpawn = spawnPoints[random.nextInt(spawnPoints.length)];
-            Entity zombie = currWorld.spawnEntity(randomSpawn, EntityType.ZOMBIE);
-
-            // Give zombie a name
-            zombie.setCustomName(ChatColor.RED + "Angry Zombie");
-            zombie.setCustomNameVisible(true);
-
-            enemies.put(zombie.getUniqueId(), zombie);
-
-            // Set random competing player as target
-//         Monster mob = (Monster) zombie;
-//         Random rd = new Random();
-//         Object[] values = gameManager.getAlivePlayers().values().toArray();
-//         LivingEntity ply = (LivingEntity) values[rd.nextInt(values.length)];;
-//         mob.setTarget(ply);
+            CustomMob[] mobTypes = CustomMob.values();
+            CustomMob mobToSpawn = mobTypes[random.nextInt(mobTypes.length)];
+            LivingEntity mob = mobToSpawn.spawn(randomSpawn);
+            enemies.put(mob.getUniqueId(), mob);
         }
     }
 
