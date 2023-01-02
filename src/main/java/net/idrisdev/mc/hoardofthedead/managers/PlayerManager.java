@@ -5,14 +5,21 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class PlayerManager {
+    private Map<UUID, PlayerInventory> oldInventories = new HashMap<>();
     public void giveKits() {
-        Bukkit.getOnlinePlayers().stream().forEach(this::giveKit);
+        Bukkit.getOnlinePlayers().forEach(this::giveKit);
     }
 
     private ItemStack generateSwordOfTruth() {
@@ -36,10 +43,24 @@ public class PlayerManager {
             player.setGameMode(GameMode.SURVIVAL);
         }
 
+        if(!oldInventories.containsKey(player.getUniqueId())){
+            oldInventories.put(player.getUniqueId(), player.getInventory());
+            player.getInventory().clear();
+        }
+
         ItemStack swordOfTruth = generateSwordOfTruth();
 
         if (!player.getInventory().contains(swordOfTruth)) {
             player.getInventory().addItem(swordOfTruth);
+        }
+    }
+    public void giveOldInventoryBack(Player player){
+        player.getInventory().clear();
+        UUID plyUUID = player.getUniqueId();
+        if(oldInventories.containsKey(plyUUID)){
+            PlayerInventory plyInv = oldInventories.get(plyUUID);
+            oldInventories.remove(plyUUID);
+            player.getInventory().setContents(plyInv.getContents());
         }
     }
 }
